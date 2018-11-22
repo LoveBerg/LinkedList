@@ -4,8 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "linkedList.h"
-//ändring
-//ändring
+
 struct Node
 {
 	int id;
