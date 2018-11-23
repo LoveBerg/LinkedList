@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include "linkedList.h"
 
+#define ANTAL_ATT_LAGRA 10
+ÄNDRING ÄNDRING
 struct Node
 {
 	int id;
