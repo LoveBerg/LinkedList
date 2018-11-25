@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include "linkedList.h"
 
-#define ANTAL_ATT_LAGRA 10
-ÄNDRING ÄNDRING
+#define CASHE_MAX 10
+
+
 struct Node
 {
 	int id;
@@ -17,19 +18,18 @@ struct Node
 struct LinkedList
 {
 	Node *head;
-	Node *tail;
 	int count;
 };
 
 
-Node* getDestination(LinkedList *List, int id) {
+char* getDestination(LinkedList *List, int id) {
 	Node* nodeHolder = List->head;
 	if (nodeHolder->id == id)
 		return nodeHolder;
 	for (int i = 0; i < List->count; i++) {
 		if (nodeHolder->next->id == id)
 			newLRU(List, nodeHolder->next, nodeHolder);
-			return nodeHolder->next;
+			return nodeHolder->next->txt;
 		nodeHolder = nodeHolder->next;
 	}
 	return NULL;
@@ -46,7 +46,7 @@ Node* createNode(int id, char* txt) {
 void addNewNode(LinkedList *List, int id, char *txt)
 {
 	Node* newNode = createNode(id, txt);
-	if (List->count >= 10)
+	if (List->count >= CASHE_MAX)
 		popLastNode(List);
 	else if (List->head != NULL)
 		newNode->next = List->head;
@@ -58,7 +58,7 @@ void popLastNode(LinkedList *List) {
 	Node* nodeHolder = NULL;
 	Node* newTail = NULL;
 	nodeHolder = List->head;
-	for (int i = 0; i < List->count; i++) {
+	for (int i = 0; i < List->count -1; i++) {
 		nodeHolder = nodeHolder->next;
 		if (i == List->count - 1)
 			newTail = nodeHolder;
@@ -69,8 +69,6 @@ void popLastNode(LinkedList *List) {
 	nodeHolder = NULL;
 	
 	newTail->next = NULL;
-	newTail = NULL;
-
 	List->count--;
 
  }
@@ -80,6 +78,4 @@ void newLRU(LinkedList *List, Node *recentlyUsed, Node *beforeRecentlyUsed) {
 	List->head = recentlyUsed;
 }
 void main() {
-	LinkedList List;
-	List.count = 0;
 }

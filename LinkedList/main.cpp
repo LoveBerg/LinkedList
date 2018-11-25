@@ -2,11 +2,12 @@
 #pragma once
 #include <iostream>
 #include "DisplayMessageEndpoint.h"
+#include "linkedList.h"
 #include <Windows.h>
 
 std::string GetDestinationFrom(int destinationId)
 {
-
+	TXT = getFromID()
 	DisplayMessageDestinationService service;
 	return service.GetDestinationName(destinationId);
 	//This call is really slow!!!
@@ -38,7 +39,6 @@ std::string GetDestinationFrom(int destinationId)
 void main()
 {
 	SetConsoleOutputCP(1252);
-
 	DisplayMessageEndpoint *endPoint = new DisplayMessageEndpoint();
 	while (true)
 	{
