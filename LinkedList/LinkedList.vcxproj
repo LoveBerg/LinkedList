@@ -115,9 +115,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cache.cpp" />
     <ClCompile Include="linkedList.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="DisplayMessageEndpoint.cpp" />
+    <ClCompile Include="cache.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayMessageEndpoint.h" />

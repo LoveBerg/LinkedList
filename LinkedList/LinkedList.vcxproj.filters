@@ -21,6 +21,12 @@
     <ClCompile Include="DisplayMessageEndpoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cache.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
     <ClCompile Include="linkedList.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -5,31 +5,25 @@
 #include <stdlib.h>
 #include "linkedList.h"
 
-#define ANTAL_ATT_LAGRA 10
-ÄNDRING ÄNDRING
-struct Node
-{
-	int id;
-	char *txt;
-	struct Node *next;
-};
-
-struct LinkedList
-{
-	Node *head;
-	Node *tail;
-	int count;
-};
+#define CASHE_MAX 10
 
 
-Node* getDestination(LinkedList *List, int id) {
+
+
+
+char* getDestination(LinkedList *List, int id) {
+	if (List->count == 0)
+		return NULL;
 	Node* nodeHolder = List->head;
 	if (nodeHolder->id == id)
-		return nodeHolder;
+		return nodeHolder->txt;
 	for (int i = 0; i < List->count; i++) {
-		if (nodeHolder->next->id == id)
+		if (nodeHolder->next == NULL)
+			return NULL;
+		if (nodeHolder->next->id == id) {
 			newLRU(List, nodeHolder->next, nodeHolder);
-			return nodeHolder->next;
+			return List->head->txt;
+		}
 		nodeHolder = nodeHolder->next;
 	}
 	return NULL;
@@ -45,10 +39,13 @@ Node* createNode(int id, char* txt) {
 }
 void addNewNode(LinkedList *List, int id, char *txt)
 {
+
+
+
 	Node* newNode = createNode(id, txt);
-	if (List->count >= 10)
+	if (List->count >= CASHE_MAX)
 		popLastNode(List);
-	else if (List->head != NULL)
+	if (List->head != NULL)
 		newNode->next = List->head;
 	List->head = newNode;
 	List->count++;
@@ -58,28 +55,25 @@ void popLastNode(LinkedList *List) {
 	Node* nodeHolder = NULL;
 	Node* newTail = NULL;
 	nodeHolder = List->head;
-	for (int i = 0; i < List->count; i++) {
+	while (nodeHolder->next != NULL)
+	{
+		newTail = nodeHolder;
 		nodeHolder = nodeHolder->next;
-		if (i == List->count - 1)
-			newTail = nodeHolder;
 	}
 	free(nodeHolder->txt);
-	free(nodeHolder);
 	nodeHolder->txt = NULL;
+	free(nodeHolder);
 	nodeHolder = NULL;
 	
 	newTail->next = NULL;
-	newTail = NULL;
-
 	List->count--;
 
  }
 void newLRU(LinkedList *List, Node *recentlyUsed, Node *beforeRecentlyUsed) {
-	beforeRecentlyUsed->next = recentlyUsed->next;
+	if (recentlyUsed->next == NULL)
+		beforeRecentlyUsed->next = NULL;
+	else
+		beforeRecentlyUsed->next = recentlyUsed->next;
 	recentlyUsed->next = List->head;
 	List->head = recentlyUsed;
-}
-void main() {
-	LinkedList List;
-	List.count = 0;
 }

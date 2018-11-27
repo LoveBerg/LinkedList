@@ -9,26 +9,26 @@
 
 std::vector<std::string> destinations = {
 	"Stockholm",
-	"Göteborg",
+	"Goteborg",
 	"Hallsberg",
-	"Malmö",
-	"Västerås",
+	"Malmo",
+	"Västeras",
 	"Uppsala",
 	"Sundsvall",
-	"Gävle",
+	"Gavle",
 	"Kalmar",
 	"Falun",
-	"Linköping",
+	"Linkoping",
 	"Oslo",
-	"Örebro",
-	"Södertälje",
-	"Umeå",
+	"Orebro",
+	"Sodertalje",
+	"Umea",
 	"Kiruna",
 	"Karlstad",
 	"Norrköping",
-	"Köpenhamn",
+	"Kopenhamn",
 	"Helsingborg",
-	"Växjö"
+	"Vaxjö"
 };
 
 int DisplayMessageEndpoint::GetRandom(int start, int slut)
@@ -46,7 +46,7 @@ int DisplayMessageEndpoint::RandomizeDestination()
 	int sum = 0;
 	for (int i = 0; i < destinations.size(); i++)
 		sum += max - i;
-	int rand = GetRandom(0,sum);
+	int rand = GetRandom(0,sum-1);
 	sum = 0;
 	for (int i = 0; i < destinations.size(); i++)
 	{

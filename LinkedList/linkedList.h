@@ -5,10 +5,21 @@
 #include <stdlib.h>
 
 typedef struct Node Node;
+struct Node
+{
+	int id;
+	char *txt;
+	struct Node *next;
+};
 
 typedef struct LinkedList LinkedList;
+struct LinkedList
+{
+	int count;
+	Node *head;
+};
 
-Node* getDestination(LinkedList *List, int id);
+char* getDestination(LinkedList *List, int id);
 
 Node* createNode(int id, char* txt);
 
@@ -17,5 +28,3 @@ void addNewNode(struct LinkedList *List, int id, char *txt);
 void popLastNode(LinkedList *List);
 
 void newLRU(LinkedList *List, Node *recentlyUsed, Node *beforeRecentlyUsed);
-
-void main();
