@@ -15,7 +15,7 @@ struct Node
 typedef struct LinkedList LinkedList;
 struct LinkedList
 {
-	int count;
+	//int count;
 	Node *head;
 };
 

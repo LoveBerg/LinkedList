@@ -4,7 +4,8 @@
 
 cache::cache() {
 	linkedlist = new LinkedList();
-	linkedlist->count = 0;
+	//linkedlist->count = 0;
+	linkedlist->head = NULL;
 
 }
 void cache::AddToCache(int id, std::string txt) {

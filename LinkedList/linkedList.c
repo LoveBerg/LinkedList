@@ -2,27 +2,36 @@
 #pragma once
 #include "linkedList.h"
 
-#define CASHE_MAX 10
-
+#define CACHE_MAX 10
 
 
 
 
 char* getDestination(LinkedList *List, int id) {
-	if (List->count == 0)
+	//if (List->count == 0)
+	if(List->head == NULL)
 		return NULL;
 	Node* nodeHolder = List->head;
+
 	if (nodeHolder->id == id)
 		return nodeHolder->txt;
-	for (int i = 0; i < List->count; i++) {
-		if (nodeHolder->next == NULL)
-			return NULL;
+	while (nodeHolder->next != NULL) {
 		if (nodeHolder->next->id == id) {
 			newLRU(List, nodeHolder->next, nodeHolder);
 			return List->head->txt;
 		}
 		nodeHolder = nodeHolder->next;
 	}
+
+	//for (int i = 0; i < List->count; i++) {
+	//	if (nodeHolder->next == NULL)
+	//		return NULL;
+	//	if (nodeHolder->next->id == id) {
+	//		newLRU(List, nodeHolder->next, nodeHolder);
+	//		return List->head->txt;
+	//	}
+	//	nodeHolder = nodeHolder->next;
+	//}
 	return NULL;
 }
 Node* createNode(int id, char* txt) {
@@ -37,16 +46,33 @@ Node* createNode(int id, char* txt) {
 void addNewNode(LinkedList *List, int id, char *txt)
 {
 
-
-
 	Node* newNode = createNode(id, txt);
-	if (List->count >= CASHE_MAX)
-		popLastNode(List);
-	if (List->head != NULL)
+	if (List->head != NULL) {
+		Node* nodeHolder = List->head;
+		int listLength = 0;
+
+		while (listLength != CACHE_MAX - 1) {
+			if (nodeHolder->next == NULL)
+				break;
+			nodeHolder = nodeHolder->next;
+			listLength++;
+		}
+		if (listLength == CACHE_MAX - 1) {
+			popLastNode(List);
+		}
 		newNode->next = List->head;
+	}
 	List->head = newNode;
-	List->count++;
-	
+
+
+	//if (List->count >= CACHE_MAX)
+	//	popLastNode(List);
+
+	//if (List->head != NULL)
+	//	newNode->next = List->head;
+	//List->head = newNode;
+	//List->count++;
+	//
 }
 void popLastNode(LinkedList *List) {
 	Node* nodeHolder = NULL;
@@ -63,7 +89,7 @@ void popLastNode(LinkedList *List) {
 	nodeHolder = NULL;
 	
 	newTail->next = NULL;
-	List->count--;
+	//List->count--;
 
  }
 void newLRU(LinkedList *List, Node *recentlyUsed, Node *beforeRecentlyUsed) {
