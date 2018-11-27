@@ -9,26 +9,26 @@
 
 std::vector<std::string> destinations = {
 	"Stockholm",
-	"Goteborg",
+	"Göteborg",
 	"Hallsberg",
-	"Malmo",
-	"Västeras",
+	"Malmö",
+	"Västerås",
 	"Uppsala",
 	"Sundsvall",
-	"Gavle",
+	"Gävle",
 	"Kalmar",
 	"Falun",
-	"Linkoping",
+	"Linköping",
 	"Oslo",
-	"Orebro",
-	"Sodertalje",
-	"Umea",
+	"Örebro",
+	"Södertälje",
+	"Umeå",
 	"Kiruna",
 	"Karlstad",
 	"Norrköping",
-	"Kopenhamn",
+	"Köpenhamn",
 	"Helsingborg",
-	"Vaxjö"
+	"Växjö"
 };
 
 int DisplayMessageEndpoint::GetRandom(int start, int slut)
